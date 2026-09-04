@@ -1,101 +1,481 @@
+```html
 <!DOCTYPE html>
 <html lang="nl">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Spotify Player</title>
-  <link rel="stylesheet" href="style.css">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <meta
+    name="theme-color"
+    content="#0b0b0b"
+  >
+
+  <title>My Spotify</title>
+
+  <link
+    rel="stylesheet"
+    href="style.css"
+  >
+
+  <!-- Spotify Web Playback SDK -->
   <script src="https://sdk.scdn.co/spotify-player.js"></script>
 </head>
 
 <body>
+
   <div class="app">
 
-    <header>
-      <div class="logo">
-        <span>●</span> My Spotify
+    <!-- ================= HEADER ================= -->
+
+    <header class="header">
+
+      <div class="brand">
+        <div class="brand-icon">♪</div>
+        <span>My Spotify</span>
       </div>
 
-      <button id="loginBtn" class="spotify-btn">
-        Inloggen met Spotify
-      </button>
+      <div class="header-right">
 
-      <button id="logoutBtn" class="logout hidden">
-        Uitloggen
-      </button>
-    </header>
+        <div
+          id="userName"
+          class="username"
+        ></div>
 
-    <main>
-
-      <section id="loginScreen" class="login-screen">
-        <div class="login-card">
-          <div class="big-logo">●</div>
-          <h1>My Spotify Player</h1>
-          <p>
-            Zoek en speel je Spotify-muziek rechtstreeks vanuit deze website.
-          </p>
-
-          <button id="loginBtn2" class="spotify-btn big">
-            Inloggen met Spotify
-          </button>
-
-          <small>
-            Je wordt doorgestuurd naar Spotify om toestemming te geven.
-          </small>
-        </div>
-      </section>
-
-      <section id="playerScreen" class="hidden">
-
-        <div class="top">
-          <div>
-            <h1>Ontdek muziek</h1>
-            <p id="status">Verbonden met Spotify</p>
-          </div>
-
-          <div id="userName"></div>
-        </div>
-
-        <div class="search">
-          <input
-            id="searchInput"
-            type="text"
-            placeholder="Zoek een nummer, artiest of album..."
-          >
-
-          <button id="searchBtn">
-            Zoeken
-          </button>
-        </div>
-
-        <div id="results" class="results"></div>
-
-      </section>
-
-    </main>
-
-    <footer id="playerBar" class="player hidden">
-
-      <div class="track-info">
-        <img id="trackImage" src="" alt="">
-        <div>
-          <strong id="trackName">Geen nummer</strong>
-          <span id="artistName">-</span>
-        </div>
-      </div>
-
-      <div class="controls">
-
-        <button id="previousBtn">⏮</button>
-
-        <button id="playBtn" class="play">
-          ▶
+        <button
+          id="logoutBtn"
+          class="logout-btn hidden"
+        >
+          Uitloggen
         </button>
 
-        <button id="nextBtn">⏭</button>
+        <button
+          id="loginBtn"
+          class="login-btn"
+        >
+          Inloggen
+        </button>
 
-        <div class="progress-container">
-          <span id="currentTime">0:00</span>
+      </div>
+
+    </header>
+
+
+    <!-- ================= LOGIN ================= -->
+
+    <section
+      id="loginScreen"
+      class="login-screen"
+    >
+
+      <div class="login-card">
+
+        <div class="login-logo">
+          ♪
+        </div>
+
+        <h1>My Spotify</h1>
+
+        <p>
+          Luister naar je Spotify-muziek
+          rechtstreeks in deze website.
+        </p>
+
+        <button
+          id="loginBtn2"
+          class="spotify-button"
+        >
+          Inloggen met Spotify
+        </button>
+
+        <div class="login-note">
+          Je Spotify-account wordt gebruikt
+          om je playlists en Liked Songs te laden.
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ================= MAIN APP ================= -->
+
+    <div
+      id="appScreen"
+      class="app-screen hidden"
+    >
+
+      <!-- SIDEBAR -->
+
+      <aside class="sidebar">
+
+        <nav>
+
+          <button
+            class="nav-item active"
+            data-page="home"
+          >
+            <span>⌂</span>
+            <span>Home</span>
+          </button>
+
+          <button
+            class="nav-item"
+            data-page="liked"
+          >
+            <span>♥</span>
+            <span>Liked Songs</span>
+          </button>
+
+        </nav>
+
+
+        <div class="sidebar-title">
+          JOUW PLAYLISTS
+        </div>
+
+
+        <div
+          id="playlistList"
+          class="playlist-list"
+        >
+
+          <div class="loading-small">
+            Playlists laden...
+          </div>
+
+        </div>
+
+      </aside>
+
+
+      <!-- CONTENT -->
+
+      <main class="content">
+
+        <!-- HOME -->
+
+        <section
+          id="homePage"
+          class="page"
+        >
+
+          <div class="hero">
+
+            <div>
+
+              <p class="eyebrow">
+                WELKOM
+              </p>
+
+              <h1>
+                Wat wil je<br>
+                vandaag luisteren?
+              </h1>
+
+              <p class="hero-subtitle">
+                Zoek muziek of kies een playlist
+                uit je bibliotheek.
+              </p>
+
+            </div>
+
+          </div>
+
+
+          <!-- SEARCH -->
+
+          <div class="search-box">
+
+            <span class="search-icon">
+              ⌕
+            </span>
+
+            <input
+              id="searchInput"
+              type="text"
+              autocomplete="off"
+              placeholder="Zoek naar nummers, artiesten of albums..."
+            >
+
+            <button
+              id="searchBtn"
+              class="search-button"
+            >
+              Zoeken
+            </button>
+
+          </div>
+
+
+          <div
+            id="searchResults"
+            class="search-results"
+          ></div>
+
+
+          <!-- QUICK CARDS -->
+
+          <h2 class="section-title">
+            Jouw bibliotheek
+          </h2>
+
+          <div class="library-cards">
+
+            <button
+              class="library-card liked-card"
+              data-page="liked"
+            >
+
+              <div class="library-card-icon">
+                ♥
+              </div>
+
+              <div>
+                <strong>
+                  Liked Songs
+                </strong>
+
+                <span>
+                  Je favoriete nummers
+                </span>
+              </div>
+
+            </button>
+
+            <button
+              class="library-card"
+              id="openPlaylists"
+            >
+
+              <div class="library-card-icon playlist-icon">
+                ♫
+              </div>
+
+              <div>
+                <strong>
+                  Playlists
+                </strong>
+
+                <span>
+                  Bekijk je playlists
+                </span>
+              </div>
+
+            </button>
+
+          </div>
+
+        </section>
+
+
+        <!-- LIKED SONGS -->
+
+        <section
+          id="likedPage"
+          class="page hidden"
+        >
+
+          <div class="page-heading">
+
+            <div class="big-liked-icon">
+              ♥
+            </div>
+
+            <div>
+
+              <p class="eyebrow">
+                BIBLIOTHEEK
+              </p>
+
+              <h1>
+                Liked Songs
+              </h1>
+
+              <p id="likedCount">
+                Je favoriete nummers
+              </p>
+
+            </div>
+
+          </div>
+
+
+          <div
+            id="likedTracks"
+            class="track-list"
+          >
+
+            <div class="loading">
+              Liked Songs laden...
+            </div>
+
+          </div>
+
+        </section>
+
+
+        <!-- PLAYLIST PAGE -->
+
+        <section
+          id="playlistPage"
+          class="page hidden"
+        >
+
+          <button
+            id="backHome"
+            class="back-button"
+          >
+            ← Terug
+          </button>
+
+
+          <div class="playlist-header">
+
+            <img
+              id="playlistImage"
+              class="playlist-cover"
+              src=""
+              alt=""
+            >
+
+            <div>
+
+              <p class="eyebrow">
+                PLAYLIST
+              </p>
+
+              <h1 id="playlistTitle">
+                Playlist
+              </h1>
+
+              <p id="playlistDescription">
+              </p>
+
+            </div>
+
+          </div>
+
+
+          <div
+            id="playlistTracks"
+            class="track-list"
+          >
+
+            <div class="loading">
+              Nummers laden...
+            </div>
+
+          </div>
+
+        </section>
+
+
+        <!-- SEARCH PAGE -->
+
+        <section
+          id="searchPage"
+          class="page hidden"
+        >
+
+          <div class="page-heading simple-heading">
+
+            <div>
+
+              <p class="eyebrow">
+                ZOEKEN
+              </p>
+
+              <h1>
+                Zoekresultaten
+              </h1>
+
+            </div>
+
+          </div>
+
+
+          <div
+            id="searchPageResults"
+            class="track-list"
+          ></div>
+
+        </section>
+
+      </main>
+
+    </div>
+
+
+    <!-- ================= PLAYER ================= -->
+
+    <footer
+      id="playerBar"
+      class="player-bar hidden"
+    >
+
+      <div class="now-playing">
+
+        <img
+          id="trackImage"
+          src=""
+          alt=""
+        >
+
+        <div class="now-playing-text">
+
+          <strong id="trackName">
+            Kies een nummer
+          </strong>
+
+          <span id="artistName">
+            -
+          </span>
+
+        </div>
+
+      </div>
+
+
+      <div class="player-controls">
+
+        <div class="buttons">
+
+          <button
+            id="previousBtn"
+            class="control-button"
+            title="Vorige"
+          >
+            ⏮
+          </button>
+
+          <button
+            id="playBtn"
+            class="main-play"
+            title="Afspelen"
+          >
+            ▶
+          </button>
+
+          <button
+            id="nextBtn"
+            class="control-button"
+            title="Volgende"
+          >
+            ⏭
+          </button>
+
+        </div>
+
+
+        <div class="progress-row">
+
+          <span id="currentTime">
+            0:00
+          </span>
 
           <input
             id="progress"
@@ -105,13 +485,19 @@
             value="0"
           >
 
-          <span id="duration">0:00</span>
+          <span id="duration">
+            0:00
+          </span>
+
         </div>
 
       </div>
 
-      <div class="volume">
-        🔊
+
+      <div class="volume-control">
+
+        <span>🔊</span>
+
         <input
           id="volume"
           type="range"
@@ -119,12 +505,24 @@
           max="100"
           value="70"
         >
+
       </div>
 
     </footer>
 
+
+    <!-- STATUS -->
+
+    <div
+      id="toast"
+      class="toast hidden"
+    ></div>
+
   </div>
 
+
   <script src="app.js"></script>
+
 </body>
 </html>
+```
