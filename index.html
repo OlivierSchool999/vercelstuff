@@ -1,28 +1,130 @@
 <!DOCTYPE html>
-<html>
+<html lang="nl">
 <head>
-  <title>Face & Hand Tracking</title>
-  <style>
-    body {
-      margin: 0;
-      overflow: hidden;
-      background: black;
-    }
-
-    video {
-      display: none;
-    }
-
-    canvas {
-      width: 100vw;
-      height: 100vh;
-    }
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Spotify Player</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://sdk.scdn.co/spotify-player.js"></script>
 </head>
-<body>
-  <video id="video" autoplay playsinline></video>
-  <canvas id="canvas"></canvas>
 
-  <script type="module" src="script.js"></script>
+<body>
+  <div class="app">
+
+    <header>
+      <div class="logo">
+        <span>●</span> My Spotify
+      </div>
+
+      <button id="loginBtn" class="spotify-btn">
+        Inloggen met Spotify
+      </button>
+
+      <button id="logoutBtn" class="logout hidden">
+        Uitloggen
+      </button>
+    </header>
+
+    <main>
+
+      <section id="loginScreen" class="login-screen">
+        <div class="login-card">
+          <div class="big-logo">●</div>
+          <h1>My Spotify Player</h1>
+          <p>
+            Zoek en speel je Spotify-muziek rechtstreeks vanuit deze website.
+          </p>
+
+          <button id="loginBtn2" class="spotify-btn big">
+            Inloggen met Spotify
+          </button>
+
+          <small>
+            Je wordt doorgestuurd naar Spotify om toestemming te geven.
+          </small>
+        </div>
+      </section>
+
+      <section id="playerScreen" class="hidden">
+
+        <div class="top">
+          <div>
+            <h1>Ontdek muziek</h1>
+            <p id="status">Verbonden met Spotify</p>
+          </div>
+
+          <div id="userName"></div>
+        </div>
+
+        <div class="search">
+          <input
+            id="searchInput"
+            type="text"
+            placeholder="Zoek een nummer, artiest of album..."
+          >
+
+          <button id="searchBtn">
+            Zoeken
+          </button>
+        </div>
+
+        <div id="results" class="results"></div>
+
+      </section>
+
+    </main>
+
+    <footer id="playerBar" class="player hidden">
+
+      <div class="track-info">
+        <img id="trackImage" src="" alt="">
+        <div>
+          <strong id="trackName">Geen nummer</strong>
+          <span id="artistName">-</span>
+        </div>
+      </div>
+
+      <div class="controls">
+
+        <button id="previousBtn">⏮</button>
+
+        <button id="playBtn" class="play">
+          ▶
+        </button>
+
+        <button id="nextBtn">⏭</button>
+
+        <div class="progress-container">
+          <span id="currentTime">0:00</span>
+
+          <input
+            id="progress"
+            type="range"
+            min="0"
+            max="100"
+            value="0"
+          >
+
+          <span id="duration">0:00</span>
+        </div>
+
+      </div>
+
+      <div class="volume">
+        🔊
+        <input
+          id="volume"
+          type="range"
+          min="0"
+          max="100"
+          value="70"
+        >
+      </div>
+
+    </footer>
+
+  </div>
+
+  <script src="app.js"></script>
 </body>
 </html>
